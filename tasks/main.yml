@@ -1,0 +1,24 @@
+---
+
+- name: install pkgs
+  ansible.builtin.apt:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - roundcube
+      - roundcube-mysql
+      - roundcube-plugins
+      - roundcube-plugins-extra
+
+- name: Write configuration
+  ansible.builtin.template:
+    src: "config.inc.php.j2"
+    dest: "/etc/roundcube/config.inc.php"
+    mode: 0660
+
+
+
+
+
+
